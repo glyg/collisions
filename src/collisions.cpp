@@ -87,7 +87,7 @@ std::vector<std::tuple<int, int>> self_intersections(Mesh& mesh)
 }
 
 
-PYBIND11_MODULE(cgal_collisions, m)
+PYBIND11_MODULE(collisions, m)
 {
     m.def("sheet_to_surface_mesh", &sheet_to_surface_mesh);
 
