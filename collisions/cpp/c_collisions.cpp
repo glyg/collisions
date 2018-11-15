@@ -19,19 +19,13 @@
 namespace py = pybind11;
 namespace PMP = CGAL::Polygon_mesh_processing;
 
-
 using K                     = CGAL::Simple_cartesian<double>;
 using Point_3               = K::Point_3;
-using Plane                 = K::Plane_3;
-
 using Mesh                  = CGAL::Surface_mesh<Point_3>;
 using face_descriptor       = boost::graph_traits<Mesh>::face_descriptor;
-using Vertex_index          = Mesh::Vertex_index;
-using Face_index            = Mesh::Face_index;
 
 
-
-Mesh sheet_to_surface_mesh(py::array_t<double> faces, py::array_t<double> vertices)
+Mesh sheet_to_surface_mesh(py::array_t<double> vertices, py::array_t<double> faces)
 {
 
     Mesh mesh;
@@ -77,17 +71,14 @@ std::vector<std::tuple<int, int>> self_intersections(Mesh& mesh)
     for (std::size_t i=0; i< intersected_tris.size(); i++)
     {
         std::tuple<int, int> tmp = std::make_tuple(intersected_tris[i].first, intersected_tris[i].second);
-
         list.push_back(tmp);
-
     }
-
     return list;
 
 }
 
 
-PYBIND11_MODULE(collisions, m)
+PYBIND11_MODULE(c_collisions, m)
 {
     m.def("sheet_to_surface_mesh", &sheet_to_surface_mesh);
 

@@ -79,9 +79,8 @@ setup(
     author_email="",
     description="",
     long_description="",
-    packages=find_packages("src"),
-    package_dir={"": "src"},
-    ext_modules=[CMakeExtension("collisions")],
+    packages=find_packages(),
+    ext_modules=[CMakeExtension("collisions/cpp/c_collisions")],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
 )

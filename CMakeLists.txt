@@ -23,8 +23,8 @@ endif()
 include( ${CGAL_USE_FILE})
 
 
-set (SOURCE_DIR "src/")
+set (SOURCE_DIR "collisions/cpp")
 include_directories (${SOURCE_DIR})
 
 add_subdirectory(pybind11)
-pybind11_add_module(collisions ${SOURCES} "${SOURCE_DIR}/collisions.cpp" )
+pybind11_add_module(c_collisions ${SOURCES} "${SOURCE_DIR}/c_collisions.cpp" )
