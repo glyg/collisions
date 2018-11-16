@@ -13,12 +13,13 @@ class CollisionSolver(Solver):
     def opt_energy(cls, pos, pos_idx, sheet, geom, model):
         # Keep old position safe
         position_buffer = sheet.vert_df[sheet.coords].copy()
+
         cls.set_pos(pos, pos_idx, sheet)
         geom.update_all(sheet)
 
         intersecting_edges = self_intersections(sheet)
         if intersecting_edges.shape[0]:
-            log.debug("%d intersections where detected", intersecting_edges.shape[0])
+            log.info("%d intersections where detected", intersecting_edges.shape[0])
             revert_positions(sheet, intersecting_edges, position_buffer)
 
         geom.update_all(sheet)
